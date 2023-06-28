@@ -1,0 +1,28 @@
+<h2>User Registration</h2>
+
+<form (ngSubmit)="sendMessage()">
+  <div>
+    <label for="senderId">Sender Id:</label>
+    <input type="text" id="senderId" [(ngModel)]="senderId" name="senderId" required>
+  </div>
+
+  <div>
+    <label for="receiverId">Receiver Id:</label>
+    <input type="text" id="receiverId" [(ngModel)]="receiverId" name="receiverId" required>
+  </div>
+
+  <div>
+    <label for="content">Content:</label>
+    <input type="text" id="content" [(ngModel)]="content" name="content" required>
+  </div>
+
+  <div>
+    <label for="timestamp">TimeStamp:</label>
+    <input type="datetime" id="timestamp" [(ngModel)]="timestamp" name="timestamp" required>
+  </div>
+
+  <div>
+    <button type="submit" (click)="sendMessage()">Send</button>
+    <h5>login</h5>
+ </div>
+</form>

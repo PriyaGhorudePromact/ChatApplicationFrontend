@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ChatService } from '../services/chat.service';
 
 @Component({
   selector: 'app-registration',
@@ -9,31 +10,39 @@ import { UserService } from '../services/user.service';
 })
 export class RegistrationComponent implements OnInit{
 
-  constructor(private http: HttpClient, private user:UserService) {  
+  constructor(private http: HttpClient, private chatservice: ChatService) {  
    }
   
-  registerUser: any = {
-    email: '',
-    password: '',
-    username: ''
+  obj: any;
+
+  registerUser: any = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+    username: new FormControl('')
+  });
+
+  messageData: any = {
+    senderId: ''
   }
 
   ngOnInit(): void {
   }
 
-  email: string | undefined;
-  password: string | undefined;
-  username: string | undefined;
-
   onRegister() {
-    const data = { username: this.username, email: this.email, password: this.password };
-    const headers = new HttpHeaders({'myHeader': 'register'});
- 
-    return this.user.register(data);
 
-    // return this.http.post('https://localhost:7252/api/Registration', data).subscribe((res) =>{
-    //   console.log(res);
-    // })
+    this.obj.username = this.registerUser.value.username;
+    this.obj.email = this.registerUser.value.username;
+    this.obj.password = this.registerUser.value.username;
 
+    this.chatservice.register(this.obj).subscribe((res) => console.log(res));
   }
+
+  // getMessage(){
+  //   var url = 'https://localhost:7252/api/Message/GetMessage';
+  //   const data = {senderId: this.senderId};
+  //   var x = this.http.get(url, this.messageData).subscribe((res) =>{
+  //     console.log(res);
+  //   })
+  //   return x;
+  // }
 }
