@@ -16,21 +16,15 @@ export class LoginComponent {
               private router: Router) {  
   }
 
-  // userLoginData: any;
-
   userLoginForm: any = new FormGroup({
    email: new FormControl(''),
    password: new FormControl(''),
    username: new FormControl('')
  });
 
-  // email: string | undefined;
-  // password: string | undefined;
-  // username: string | undefined;
-
   onLogin() {
     return this.chatservice.login(this.userLoginForm.value).subscribe((res: any) => 
     // console.log("login successful")
-    this.router.navigate(['users']));
+    this.router.navigate(['message']));
   }
 }

@@ -23,7 +23,7 @@ export class ChatService {
   }
 
   getMessage(){
-    return this.http.get(this.url+'Users/GetUsers');
+    return this.http.get(this.url+'Message/GetMessage');
   }
 
   user(){

@@ -5,10 +5,11 @@ body {
 }
 
 input[type=text], input[type=password] {
-  width: 50%;
+  width: 100%;
+  max-width: 50%;
   padding: 15px;
   margin: 5px 0 22px 0;
-  display: inline-block;
+  display: flex;
   border: none;
   background: #f1f1f1;
 }
@@ -21,6 +22,7 @@ hr {
 label,input {
     display: block;
     font-size: large;
+    text-align: left;
    }
 
 h1{
@@ -35,6 +37,7 @@ h1{
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    padding: 1px 20px 20px;
 }
 
 .loginbtn {
@@ -44,6 +47,10 @@ h1{
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 50%;
+  width: 100%;
   opacity: 0.9;
+  min-width: 200px;
+  max-width: 200px;
+  display: flex;
+  justify-content: center;
 }

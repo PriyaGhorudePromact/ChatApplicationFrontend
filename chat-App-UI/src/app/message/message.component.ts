@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ChatService } from '../services/chat.service';
+import { messageData } from '../Models/messageData';
 
 @Component({
   selector: 'app-message',
@@ -17,6 +18,8 @@ export class MessageComponent {
   ngOnInit() {
     this.getUsers();
  }
+
+ msgdata: messageData[] = [];
 
  newMessage = '';
   msg: any = new FormGroup({
@@ -48,11 +51,21 @@ export class MessageComponent {
     content:  new FormControl(''),
     timestamp:  new FormControl(''),
   });
+
+  userData: any = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+    username: new FormControl('')
+  });
   
   getUsers(){
-    return this.chatservice.user().subscribe((res: any) => {
+    
+    var obj = this.chatservice.user().subscribe((res: any) => {
       console.log(res);
     })
+    this.userData = obj;
+    console.log("123",this.userData)
+    return this.userData; 
   }
 
   sendMessage(){
@@ -60,12 +73,13 @@ export class MessageComponent {
       return;
     }
     debugger
-      this.chatservice.sendMessage(this.usermsg.value).subscribe((res) => 
-      console.log(res));    
+      this.chatservice.sendMessage(this.usermsg.value).subscribe();    
   }
 
   getMessage(){
-    this.chatservice.getMessage().subscribe((res) => 
-    this.usermsg = res); 
+    debugger
+    var obj = this.chatservice.getMessage().subscribe((res) => 
+    console.log("data",res)); 
+    this.usermsg = obj
   }
 }
