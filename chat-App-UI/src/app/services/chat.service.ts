@@ -14,10 +14,19 @@ export class ChatService {
   }
 
   login(data:any){
+    debugger
     return this.http.post(this.url + "login", data);
   }
 
-  message(data:any){
+  sendMessage(data:any){
     return this.http.post(this.url+"message",data);
+  }
+
+  getMessage(){
+    return this.http.get(this.url+'Users/GetUsers');
+  }
+
+  user(){
+    return this.http.get(this.url+"Users/GetUsers");
   }
 }

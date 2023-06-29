@@ -1,20 +1,25 @@
-<h2>User Login</h2>
 
 <form [formGroup]="userLoginForm" (ngSubmit)="onLogin()">
-  <div>
+
+  <div class="lgnform">
+  <h1>Login</h1>
+  <hr>
+
+  <!-- <div>
     <label for="username">Username:</label>
     <input type="text" id="username" [(ngModel)]="username" name="username" required>
+  </div> -->
+
+  <div>
+    <label for="email">Email</label>
+    <input type="text" id="email" formControlName="email" name="email" required>
   </div>
 
   <div>
-    <label for="email">Email:</label>
-    <input type="text" id="email" [(ngModel)]="email" name="email" required>
+    <label for="password">Password</label>
+    <input type="password" id="password" formControlName="password" name="password" required>
   </div>
 
-  <div>
-    <label for="password">Password:</label>
-    <input type="password" id="password" [(ngModel)]="password" name="password" required>
-  </div>
-
-  <button type="submit">Login</button>
+  <button type="submit" class="loginbtn">Login</button>
+</div>
 </form>

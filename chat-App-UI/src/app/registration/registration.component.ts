@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ChatService } from '../services/chat.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -10,10 +11,10 @@ import { ChatService } from '../services/chat.service';
 })
 export class RegistrationComponent implements OnInit{
 
-  constructor(private http: HttpClient, private chatservice: ChatService) {  
+  constructor(private http: HttpClient, 
+    private chatservice: ChatService,
+    private router: Router) {  
    }
-  
-  obj: any;
 
   registerUser: any = new FormGroup({
     email: new FormControl(''),
@@ -21,28 +22,11 @@ export class RegistrationComponent implements OnInit{
     username: new FormControl('')
   });
 
-  messageData: any = {
-    senderId: ''
-  }
-
   ngOnInit(): void {
   }
 
   onRegister() {
-
-    this.obj.username = this.registerUser.value.username;
-    this.obj.email = this.registerUser.value.username;
-    this.obj.password = this.registerUser.value.username;
-
-    this.chatservice.register(this.obj).subscribe((res) => console.log(res));
+    this.chatservice.register(this.registerUser.value).subscribe((res) => 
+    this.router.navigate(['login']));    
   }
-
-  // getMessage(){
-  //   var url = 'https://localhost:7252/api/Message/GetMessage';
-  //   const data = {senderId: this.senderId};
-  //   var x = this.http.get(url, this.messageData).subscribe((res) =>{
-  //     console.log(res);
-  //   })
-  //   return x;
-  // }
 }

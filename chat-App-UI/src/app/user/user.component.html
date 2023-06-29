@@ -1,6 +1,17 @@
-<form (ngSubmit)="getUsers()">
     <div>
         <label for="userId">User Id:</label>
         <input type="text" id="userId" [(ngModel)]="userId" name="userId" required>
       </div>
-</form>
+
+      <!-- <div>{{regUser.username}}</div> -->
+
+      <ul>
+        <li 
+            *ngFor="let user of regUser"
+            class="list-group-item">
+            {{ user.property }}
+        </li>
+      </ul>
+      <div *ngFor="let item of regUser">
+        {{item.json}}
+        </div>
