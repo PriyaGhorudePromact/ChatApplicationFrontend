@@ -42,17 +42,11 @@
             <div class="chat_list">
               <div class="chat_people">
                 <div class="chat_ib">
-                  <h2>Hi</h2>
-                  <h2>Hi</h2>
-                  <h2>Hi</h2>
-                  <div *ngFor="let item of msgdata">
-                    {{ item }}
-                    <!-- <div *ngFor="let data of item">
-                      {{data.username | json}}
-                    </div> -->
-                  <div>
-            <h5>{{ usermsg.value.username }}</h5>
                   
+                  <div *ngFor="let item of userDt" (click)="enableBtn(item.id)">
+                    {{ item.userName }}
+                   
+                  <div>                  
                 </div>
               </div>
             </div>
@@ -61,7 +55,12 @@
       <div class="mesgs">
         <div class="msg_history">
 
-          <li class="message" *ngFor="let message of usermsg">
+          <li class="message" *ngFor="let message of msgdata" onclick="deleteMessage(message.id)">
+            {{ message }}
+            <div>
+              <button hidden (onclick)="deleteMessage(id)">Delete</button>
+              <button hidden (onclick)="editMessage(id)">Edit</button>
+            </div>
           </li>
         
         </div>

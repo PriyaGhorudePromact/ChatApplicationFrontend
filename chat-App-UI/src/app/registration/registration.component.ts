@@ -29,4 +29,8 @@ export class RegistrationComponent implements OnInit{
     this.chatservice.register(this.registerUser.value).subscribe((res) => 
     this.router.navigate(['login']));    
   }
+
+  onDelete(){
+    this.chatservice
+  }
 }

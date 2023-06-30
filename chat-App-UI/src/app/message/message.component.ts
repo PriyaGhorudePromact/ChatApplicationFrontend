@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ChatService } from '../services/chat.service';
 import { messageData } from '../Models/messageData';
+import { userModel } from '../Models/userModel';
 
 @Component({
   selector: 'app-message',
@@ -20,6 +21,9 @@ export class MessageComponent {
  }
 
  msgdata: messageData[] = [];
+ userDt: userModel[] = [];
+ id: string | undefined;
+ btnEnable = true;
 
  newMessage = '';
   msg: any = new FormGroup({
@@ -59,27 +63,44 @@ export class MessageComponent {
   });
   
   getUsers(){
-    
-    var obj = this.chatservice.user().subscribe((res: any) => {
-      console.log(res);
+      this.chatservice.user().subscribe((res: any) => {
+      this.userDt = res;
     })
-    this.userData = obj;
-    console.log("123",this.userData)
-    return this.userData; 
+    return this.userDt; 
   }
 
   sendMessage(){
     if (this.newMessage.trim() === '') {
       return;
     }
-    debugger
       this.chatservice.sendMessage(this.usermsg.value).subscribe();    
   }
 
-  getMessage(){
-    debugger
-    var obj = this.chatservice.getMessage().subscribe((res) => 
+  getMessage(id:any){
+ this.chatservice.getMessage(id).subscribe((res) => 
     console.log("data",res)); 
-    this.usermsg = obj
+  }
+
+  getHistory(id:any){
+    // debugger
+    // this.chatservice.retreveMsg(id).subscribe((res) => 
+    // this.msgdata = res); 
+    this.chatservice.retreveMsg(id).subscribe((res: any) => {
+      this.msgdata = res;
+  })
+    return this.msgdata; 
+  }
+
+  enableBtn(id:any){
+    this.id = id;
+  }
+
+  deleteMessage(id:any){
+    this.chatservice.deleteMsg(id).subscribe();
+    this.btnEnable = false;
+  }
+
+  editMessage(id:any){
+    this.chatservice.editMsg(id).subscribe();
   }
 }

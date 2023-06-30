@@ -22,11 +22,24 @@ export class ChatService {
     return this.http.post(this.url+"message",data);
   }
 
-  getMessage(){
-    return this.http.get(this.url+'Message/GetMessage');
+  getMessage(data:any){
+    return this.http.get(this.url+'Message/GetMessage?${data}');
   }
 
   user(){
     return this.http.get(this.url+"Users/GetUsers");
+  }
+
+  retreveMsg(data:any){
+    debugger
+    return this.http.get(this.url+'RetriveHistory/${data}');
+  }
+
+  deleteMsg(data:any){
+    return this.http.delete(this.url+'Message/DeleteMessage',data)
+  }
+
+  editMsg(data:any){
+    return this.http.put(this.url+'Message/EditMessage?',data);
   }
 }
